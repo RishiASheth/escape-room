@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: black;
+            color: white;
+            position: relative;
+        }
+        .image-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .bg-image {
+            max-width: 100%;
+            height: auto;
+            cursor: pointer;
+        }
+        .text-container {
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+            position: absolute;
+            bottom: 50px;
+        }
+        input, button {
+            margin-top: 15px;
+            padding: 12px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+        }
+        input {
+            width: 250px;
+            text-align: center;
+        }
+        button {
+            cursor: pointer;
+            background: white;
+            color: black;
+        }
+    </style>
+    <script>
+        function checkInput() {
+            var inputVal = document.getElementById("secretInput").value;
+            if (inputVal.toLowerCase() === "admin") {
+                window.location.href = "bribegeneral2.html";
+            }
+        }
+
+        function playAudio() {
+            let audio = document.getElementById('constableAudio');
+            audio.play().catch(err => console.log('Autoplay prevented:', err));
+        }
+    </script>
+</head>
+<body>
+    <audio id="constableAudio">
+        <source src="audio/constable.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <div class="image-container">
+        <img src="images/bribegeneral.webp" alt="Bribe General" class="bg-image" onclick="playAudio()">
+    </div>
+
+    <div class="text-container">
+        <h1>Make 4 Paper Boats</h1>
+        <h1>Make 4 Planes</h1>
+        <p>Well, the constable has spotted you and requires something. Give me whatever he asks you 😏</p>
+        <input type="text" id="secretInput" placeholder="Enter code...">
+        <button onclick="checkInput()">Submit</button>
+    </div>
+</body>
+</html>

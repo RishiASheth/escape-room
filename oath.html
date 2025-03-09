@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oath Recording</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: black;
+            color: white;
+            font-size: 24px;
+            text-align: center;
+        }
+        video {
+            width: 80%;
+            max-width: 600px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <video id="video" autoplay></video>
+    <p>Bhidu ek lambaa saans le aur bol, mera bacha hai tu <br> English me bole to
+        happiness is tempo traveller but salmon is pregnant <br> bhidu jail se nikal kar
+        mast maggie kahyene aur almari poori cash se bhari
+        hogi. <br> Accha chalta hun, dua me yaad rakhna madar, chod na yaar.</p>
+    
+    <script>
+        async function startRecording() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+                const videoElement = document.getElementById('video');
+                videoElement.srcObject = stream;
+                
+                const mediaRecorder = new MediaRecorder(stream);
+                let chunks = [];
+                
+                mediaRecorder.ondataavailable = event => {
+                    if (event.data.size > 0) {
+                        chunks.push(event.data);
+                    }
+                };
+                
+                mediaRecorder.onstop = () => {
+                    const blob = new Blob(chunks, { type: 'video/webm' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'oath.webm';
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                };
+                
+                mediaRecorder.start();
+                
+                setTimeout(() => {
+                    mediaRecorder.stop();
+                    stream.getTracks().forEach(track => track.stop());
+                    setTimeout(() => {
+                        window.location.href = 'moneyclue.html';
+                    }, 2000);
+                }, 20000);
+                
+            } catch (error) {
+                console.error('Error accessing camera:', error);
+            }
+        }
+        
+        startRecording();
+    </script>
+</body>
+</html>

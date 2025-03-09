@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Money Clue</title>
+    <style>
+        body {
+            background: black;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+        .bg-image {
+            max-width: 200%;
+            max-height: 200%;
+            width: auto;
+            height: auto;
+        }
+        #passwordInput {
+            padding: 15px;
+            font-size: 22px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            width: 320px;
+            text-align: center;
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+        }
+        .overlay-text {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+            font-size: 15px;
+            font-weight: bold;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+<body onclick="playAudio()">
+    <audio id="bgAudio">
+        <source src="audio/envelopeclue.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <img src="images/envelopeclue.webp" alt="Clue Image" class="bg-image">
+    <div class="overlay-text">Well, the song revealed everything</div>
+    <input type="text" id="passwordInput" placeholder="Enter Code">
+    <script>
+        function playAudio() {
+            let audio = document.getElementById('bgAudio');
+            audio.play().catch(err => console.log('Autoplay prevented:', err));
+        }
+
+        document.getElementById('passwordInput').addEventListener('keypress', function(event) {
+            playAudio();
+            if (event.key === 'Enter') {
+                if (this.value.toLowerCase() === 'admin') {
+                    window.location.href = 'actorclue.html';
+                }
+            }
+        });
+
+        // Auto redirect after 180 seconds (3 minutes)
+        setTimeout(() => {
+            window.location.href = 'actorclue.html';
+        }, 180000);
+    </script>
+</body>
+</html>

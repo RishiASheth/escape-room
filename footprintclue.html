@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Money Clue</title>
+    <style>
+        body {
+            background: url('images/envelopeclue.jpeg') no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
+            padding: 20px;
+        }
+        #passwordInput {
+            padding: 5px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body onclick="playAudio()">
+    <audio id="bgAudio">
+        <source src="audio/envelopeclue.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <input type="text" id="passwordInput" placeholder="Enter Code">
+    <script>
+        function playAudio() {
+            let audio = document.getElementById('bgAudio');
+            audio.play().catch(err => console.log('Autoplay prevented:', err));
+        }
+        
+        document.getElementById('passwordInput').addEventListener('keypress', function(event) {
+            playAudio();
+            if (event.key === 'Enter') {
+                if (this.value.toLowerCase() === 'admin') {
+                    window.location.href = 'pose.html';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

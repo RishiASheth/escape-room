@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camera Recording</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: black;
+            color: white;
+            flex-direction: column;
+        }
+        .container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        video {
+            width: 300px;
+            height: auto;
+            border: 2px solid white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Recording...</h1>
+    <div class="container">
+        <video id="cameraFeed" autoplay></video>
+        <video id="videoPlayback" src="pose.mov" autoplay loop></video>
+    </div>
+    
+    <script>
+        async function startRecording() {
+            let stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+            let mediaRecorder = new MediaRecorder(stream);
+            let chunks = [];
+            let cameraFeed = document.getElementById("cameraFeed");
+            cameraFeed.srcObject = stream;
+
+            mediaRecorder.ondataavailable = event => chunks.push(event.data);
+            mediaRecorder.onstop = () => {
+                let blob = new Blob(chunks, { type: "video/webm" });
+                let url = URL.createObjectURL(blob);
+                let a = document.createElement("a");
+                a.href = url;
+                a.download = "pose_recording.webm";
+                document.body.appendChild(a);
+                a.click();
+                window.location.href = "poseclue.html";
+            };
+
+            mediaRecorder.start();
+            setTimeout(() => {
+                mediaRecorder.stop();
+                stream.getTracks().forEach(track => track.stop());
+            }, 60000); // Record for 60 seconds
+        }
+        
+        startRecording();
+    </script>
+</body>
+</html>

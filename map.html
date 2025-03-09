@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map</title>
+    <style>
+        body {
+            background: black;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+        .container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            max-width: 100vw;
+            max-height: 100vh;
+        }
+        .container img {
+            max-width: 90vw; /* Slightly enlarged */
+            max-height: 90vh;
+        }
+        #passwordInput {
+            padding: 15px;
+            font-size: 20px;
+            border: 2px solid #fff;
+            border-radius: 8px;
+            background-color: #222;
+            color: #fff;
+            position: absolute;
+            bottom: 20px;
+            width: 250px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body onclick="playAudio()">
+    <audio id="bgAudio">
+        <source src="audio/map.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <div class="container">
+        <img src="images/map.png" alt="Map">
+        <input type="text" id="passwordInput" placeholder="Combine Codes">
+    </div>
+    <script>
+        function playAudio() {
+            let audio = document.getElementById('bgAudio');
+            audio.play().catch(err => console.log('Autoplay prevented:', err));
+        }
+        
+        document.getElementById('passwordInput').addEventListener('keypress', function(event) {
+            playAudio();
+            if (event.key === 'Enter') {
+                let value = this.value.replace(/\s+/g, '').toLowerCase();
+                if (value === '1vonzmd7') {
+                    window.location.href = 'dance.html';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

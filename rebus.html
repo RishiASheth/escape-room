@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secret Code</title>
+    <style>
+        body {
+            background: black;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+        .image-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .input-container {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        #passwordInput {
+            padding: 15px;
+            font-size: 22px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            width: 320px;
+            text-align: center;
+            background: white;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <audio id="rebusAudio">
+        <source src="audio/rebus.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <div class="image-container">
+        <img src="images/rebus.webp" alt="Background Image">
+    </div>
+    <div class="input-container">
+        <input type="text" id="passwordInput" placeholder="only numbers from answers">
+    </div>
+
+    <script>
+        let audio = document.getElementById('rebusAudio');
+
+        document.getElementById('passwordInput').addEventListener('click', function() {
+            audio.play().catch(err => console.log('Audio playback prevented:', err));
+        });
+
+        document.getElementById('passwordInput').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                if (this.value.trim() === '4044513') {
+                    window.location.href = 'bribegeneral.html';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

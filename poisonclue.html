@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poison Clue</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+            color: white;
+            position: relative;
+        }
+        .image-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .bg-image {
+            max-width: 100%;
+            height: auto;
+        }
+        .text-container {
+            position: absolute;
+            top: 10%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+            max-width: 80%;
+        }
+        .button-container {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+        }
+        button {
+            padding: 12px 18px;
+            font-size: 16px;
+            cursor: pointer;
+            background: #ff4444;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        button:hover {
+            background: #cc0000;
+        }
+    </style>
+    <script>
+        function nextPage() {
+            window.location.href = "gpay.html";
+        }
+    </script>
+</head>
+<body>
+    <div class="image-container">
+        <img src="images/poisonclue.jpeg" alt="Poison Clue" class="bg-image">
+    </div>
+
+    <div class="text-container">
+        <h2>Four glasses of poison lie at the corners of the room.</h2>
+        <p>To advance, four members must make the ultimate sacrifice. Those poisoned will be unable to move until the next challenge is complete.</p>
+    </div>
+
+    <div class="button-container">
+        <button onclick="nextPage()">Done</button>
+    </div>
+</body>
+</html>

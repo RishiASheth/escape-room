@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Money Clue</title>
+    <style>
+        body {
+            background: black;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            position: relative;
+        }
+        .container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-end;
+            background: url('images/moneyclue.png') no-repeat center center;
+            background-size: contain;
+        }
+    </style>
+</head>
+<body onclick="playAudio()">
+    <audio id="bgAudio">
+        <source src="audio/moneyclue.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <div class="container"></div>
+
+    <script>
+        function playAudio() {
+            let audio = document.getElementById('bgAudio');
+            audio.play().catch(err => console.log('Autoplay prevented:', err));
+        }
+
+        // Redirect after 30 seconds
+        setTimeout(() => {
+            window.location.href = 'map.html';
+        }, 200000);
+    </script>
+</body>
+</html>

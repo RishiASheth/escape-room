@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: url('images/home.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            height: 100vh;
+            position: relative;
+        }
+        #inputBox {
+            width: 300px;
+            padding: 10px;
+            margin-bottom: 50px;
+            font-size: 18px;
+            border: 2px solid black;
+            border-radius: 5px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        #message-container {
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            cursor: pointer;
+        }
+        #message {
+            font-size: 80px;
+            font-weight: bold;
+            color: white;
+            line-height: 1.2;
+        }
+        #subtext {
+            font-size: 20px;
+            color: white;
+            margin-top: 10px;
+        }
+        #error-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: black;
+            width: 100vw;
+            height: 100vh;
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+        #error-container img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <audio id="bgAudio" loop>
+        <source src="audio/home.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="message-container">
+        <div id="message">SANKALP JAIL</div>
+        <div id="subtext">Salmon was here and bhai escaped <br> Records: escape plan</div>
+    </div>
+
+    <input type="text" id="inputBox" placeholder="Enter password...">
+
+    <div id="error-container">
+        <img src="images/error.jpeg" alt="Error">
+    </div>
+
+    <script>
+        const audio = document.getElementById('bgAudio');
+
+        function playAudio() {
+            if (audio.paused) {
+                audio.play().catch(error => console.log('Audio playback prevented:', error));
+            }
+        }
+
+        document.getElementById('message-container').addEventListener('click', playAudio);
+        document.getElementById('inputBox').addEventListener('click', playAudio);
+
+        document.getElementById('inputBox').addEventListener('keyup', function(event) {
+            const inputText = event.target.value.trim().toLowerCase();
+            if (['deeraishwarya', 'deer aishwarya'].includes(inputText)) {
+                window.location.href = 'oath.html';
+            } else {
+                document.getElementById('error-container').style.display = "flex";
+            }
+        });
+    </script>
+</body>
+</html>

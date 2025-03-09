@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slot Machine</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: black;
+            margin: 0;
+        }
+        img {
+            width: 300px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #ffcc00;
+            color: black;
+            font-weight: bold;
+        }
+        button:hover {
+            background-color: #ffaa00;
+        }
+    </style>
+</head>
+<body>
+    <img id="slotImage" src="images/1w.gif" alt="Slot Machine">
+    <button id="spinButton">Spin</button>
+    <audio id="slotAudio">
+        <source src="audio/slot.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <script>
+        const images = ["images/1w.gif", "images/2w.gif", "images/3w.gif", "images/1w.gif"];
+        let spinCount = 0;
+        const spinButton = document.getElementById("spinButton");
+        const slotImage = document.getElementById("slotImage");
+        const slotAudio = document.getElementById("slotAudio");
+        
+        spinButton.addEventListener("click", function() {
+            slotAudio.play().catch(err => console.log("Audio play prevented: ", err));
+            spinCount++;
+            if (spinCount < 9) {
+                slotImage.src = images[spinCount % 4];
+            } else {
+                slotImage.src = "images/4c.gif";
+                spinButton.disabled = true; // Disable button to prevent further clicks
+                setTimeout(() => {
+                    window.location.href = "slotclue.html";
+                }, 3000); // Assuming the GIF duration is ~3 seconds
+            }
+        });
+    </script>
+</body>
+</html>

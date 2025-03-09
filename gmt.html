@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GMT Challenge</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+            color: white;
+            position: relative;
+        }
+        .image-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .bg-image {
+            max-width: 100%;
+            height: auto;
+        }
+        .input-container {
+            position: absolute;
+            bottom: 50px;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+            margin: 10px;
+            text-align: center;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        function playAudio() {
+            var audio = document.getElementById("bgAudio");
+            audio.play().catch(err => console.log("Autoplay prevented:", err));
+        }
+
+        function checkAnswers() {
+            var prisonerPOV = document.getElementById("prisoner").value.trim();
+            var policePOV = document.getElementById("police").value.trim();
+
+            if (prisonerPOV === "12:00" && policePOV === "4:00") {
+                window.location.href = "tonguetwister.html";
+            } else {
+                alert("Incorrect! Try again.");
+            }
+        }
+    </script>
+</head>
+<body>
+    <audio id="bgAudio">
+        <source src="audio/gmt.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <div class="image-container">
+        <img src="images/gmt.png" alt="GMT Challenge" class="bg-image">
+    </div>
+    
+    <div class="input-container">
+        <h2>Enter the correct time:</h2>
+        <input type="text" id="prisoner" placeholder="Prisoner's POV" onclick="playAudio()">
+        <input type="text" id="police" placeholder="Police POV" onclick="playAudio()">
+        <br>
+        <button onclick="checkAnswers()">Submit</button>
+    </div>
+</body>
+</html>

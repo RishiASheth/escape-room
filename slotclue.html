@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dusty Room</title>
+    <style>
+        body {
+            background: black url('images/footprint.webp') no-repeat center;
+            background-size: contain;
+            color: rgb(255, 247, 247);
+            text-align: center;
+            font-family: Arial, sans-serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        input {
+            margin-top: 20px;
+            padding: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Room seems dusty... Why do I see so many footprints? <br>Is there a "connection"? <br> shape?</h1>
+    <input type="text" id="inputBox" placeholder="Enter code...">
+    <script>
+        document.getElementById('inputBox').addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                if (this.value.trim().toLowerCase() === 'octagon') {
+                    window.location.href = 'pose.html';
+                }
+            }
+        });
+    </script>
+</body>
+</html>

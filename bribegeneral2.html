@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search for Joker Cards</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+            color: white;
+            position: relative;
+        }
+        .image-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .bg-image {
+            max-width: 100%;
+            height: auto;
+        }
+        .text-container {
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 10px;
+            position: absolute;
+            bottom: 50px;
+        }
+    </style>
+    <script>
+        setTimeout(function() {
+            window.location.href = "gmt.html";
+        }, 60000); // Redirect after 60 seconds
+    </script>
+</head>
+<body>
+    <div class="image-container">
+        <img src="images/bribegeneral2.jpeg" alt="Bribe General" class="bg-image">
+    </div>
+    <div class="text-container">
+        <h1>Search for joker cards</h1>
+    </div>
+</body>
+</html>
